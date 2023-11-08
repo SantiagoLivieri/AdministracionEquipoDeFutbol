@@ -8,20 +8,37 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+
 public class EquipoDeFutbol {
 
+	private String nombreEquipo;
+	private TreeSet<Jugador> equipo;
+
+	public EquipoDeFutbol(String nombreEquipo) {
+		this.nombreEquipo = nombreEquipo;
+		equipo = new TreeSet<Jugador>();
+	}
+
 	/*
-	 * La capacidad máxima de un equipo es 23. Cualquier intento de agregar más
-	 * jugadores generará una excepción (CapacidadMaximaException). Además, no
-	 * deberá permitir duplicar Jugadores (JugadorDuplicadoException).
+	 * La capacidad mï¿½xima de un equipo es 23. Cualquier intento de agregar mï¿½s
+	 * jugadores generarï¿½ una excepciï¿½n (CapacidadMaximaException). Ademï¿½s, no
+	 * deberï¿½ permitir duplicar Jugadores (JugadorDuplicadoException).
 	 */
+	
 	public void agregarJugador(Jugador jugador) throws CapacidadMaximaException, JugadorDuplicadoException {
 
+		if(jugador != null) {
+			equipo.add(jugador);
+		}else if(equipo.size() >= 23){
+			throw new CapacidadMaximaException();
+		}else {
+			throw new JugadorDuplicadoException();
+		}
 	}
 
 	/*
 	 * Permite cambiar cualquier jugador. Un intento de cambiar un jugador no
-	 * presente en el equipo generará una excepción
+	 * presente en el equipo generarï¿½ una excepciï¿½n
 	 * (JugadoreInexistenteException).
 	 */
 	public Boolean cambiarJugador(Jugador saliente, Jugador entrante) throws JugadoreInexistenteException{
@@ -42,4 +59,18 @@ public class EquipoDeFutbol {
 		return null;
 	}
 
+	public TreeSet<Jugador> getJugadores() {
+        return equipo;
+    }
+
+
+
+	
 }
+	
+	
+		
+
+
+	
+	
